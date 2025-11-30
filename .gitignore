@@ -1,0 +1,22 @@
+# Maven
+/target/
+**/target/
+.mvn/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS & logs
+.DS_Store
+*.log
+logs/
+
+# Java
+hs_err_pid*
+
+# Misc
+perf/*.jtl

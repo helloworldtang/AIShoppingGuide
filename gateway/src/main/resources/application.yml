@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: INFO
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      default-filters:
+        - AddResponseHeader=X-Accel-Buffering, no
+      routes:
+        - id: orchestrator
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**
+          filters:
+            - name: DedupeResponseHeader
+              args:
+                name: X-Accel-Buffering
+                strategy: RETAIN_FIRST

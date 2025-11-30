@@ -1,0 +1,39 @@
+server:
+  port: 8081
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 20
+    accept-count: 1000
+
+spring:
+  application:
+    name: orchestrator
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    root: INFO
+
+resilience4j:
+  timelimiter:
+    instances:
+      intent:
+        timeoutDuration: 2s
+      stdqa:
+        timeoutDuration: 1s
+      enrich:
+        timeoutDuration: 3s
+      reco:
+        timeoutDuration: 3s
+      replacement:
+        timeoutDuration: 2s
+      search:
+        timeoutDuration: 2s
+      formatter:
+        timeoutDuration: 1s
